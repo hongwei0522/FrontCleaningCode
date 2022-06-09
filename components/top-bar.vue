@@ -1,0 +1,88 @@
+<template>
+  <div class="header">
+    <div><a class="header-link" href="https://www.jackercleaning.com/n" target="_blank">
+      <img class="header-logo" src="@/assets/img/icon/logo.png" alt="logo">
+    </a></div>
+    <div class="header-title">
+      <div class="header-font1">找打掃</div>
+      <div class="header-font1">企業清潔</div>
+      <div class="header-font1">全部服務</div>
+      <div class="header-font1 header-font2">成為潔客</div>
+      <div class="header-font1">生活智慧站</div>
+      <div class="header-font1 header-font3">註冊登入</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {
+
+  },
+  props: {
+    
+  },
+  data () {
+    return {
+
+    }
+  },
+  computed: {
+
+  },
+  methods: {
+  },
+  watch: {
+    
+  }
+}
+</script>
+
+<style lang="scss">
+
+.header {
+  width: 1440px;
+  height: 55px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position:fixed;
+  background: white;
+
+  &-logo {
+    width: 200px;
+  }
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  &-font1{
+    font-size: 12px;
+    border-radius: 20px;
+    line-height: 24px;
+    padding: 0px 10px;
+    cursor: pointer;
+  }
+  &-font1:hover{
+    background: #d1d1cfc3;
+  }
+  &-font2{
+    color: #17C3E0;
+  }
+  &-font3{
+    color: #17C3E0;
+    border-radius: 20px;
+    border-color: #17C3E0;
+  }
+}
+
+@media( max-width: 1023px ){
+
+}
+
+
+</style>
