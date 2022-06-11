@@ -34,7 +34,7 @@
       <div class="inedx-hours-title2">可以根據自己的需求查看會清潔的細項，並預估總共需要的時數，當天清潔人員會再討論狀況做些調整！</div>
       <div><a><input type="button" value="時數計算教學" class="index-hours-calculation"></a></div>
     </div>
-    <serviceItem/>
+    <serviceItem :items="items" />
     <div class="index-hours"><a><input type="button" value="開始預約>" class="index-appointment"></a></div>
     <div class="index-unserviced">
       <div class="index-unserviced-title1">其他未服務內容</div>
@@ -108,6 +108,14 @@ export default {
         { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白**', score:'4', start: '★★★★★', price: '$450/hr' },
         { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白**', score:'4', start: '★★★★★', price: '$450/hr' },
         { img: require('@/assets/img/index/bg-bedroom.jpg'), city: '新北市', name: '白**', score:'4', start: '★★★★★', price: '$450/hr' },
+      ],
+      items: [
+        { img: require('@/assets/img/article/photo1.png'), title: '客廳清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+        { img: require('@/assets/img/article/photo1.png'), title: '廚房清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' , remark2: '冰箱內部整理、清潔       + 1 ~1.5hr'},
+        { img: require('@/assets/img/article/photo1.png'), title: '陽台清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+        { img: require('@/assets/img/article/photo1.png'), title: '浴室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+        { img: require('@/assets/img/article/photo1.png'), title: '臥室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+        { img: require('@/assets/img/article/photo1.png'), title: '其他清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
       ],
     }
   },
@@ -292,7 +300,7 @@ export default {
 
   &-hours{
     text-align: center;
-    padding-bottom: 50px;
+    padding: 50px;
 
     &-title1{
       font-family: 'Noto Sans TC';

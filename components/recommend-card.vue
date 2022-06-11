@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card swiper-contain">
     <swiper class="swiper card-swiper" :options="swiperOption" ref="mySwiper">
         <swiper-slide class="card-swiper-slide"
           v-for="(frame, index) in frames"
@@ -39,7 +39,8 @@ export default {
       swiperOption: {
         // scrollbar: true,
         // mousewheel: true,
-        slidesPerView: "4",
+        slidesPerView: 4,
+        // slidesPerColumn: 2,
         grid: { 
           rows: 2, 
         },
@@ -72,13 +73,15 @@ export default {
           //   spaceBetween: 0,
           // },
         // },
+        
       }
     }
   },
   computed: {
-    mySwiper () { return this.$refs.mySwiper.$swiper }
+    mySwiper () { return this.$refs.mySwiper.$swiper },
   },
   methods: {
+    
   },
   watch: {
     
