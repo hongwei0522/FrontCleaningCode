@@ -12,16 +12,18 @@
         <div class="service-box-title">{{ item.title }}</div>
       </div>
       <div class="service-text">
-        <div>
-          <serviceItemContent :contents="contents" />   
+        <div class="service-text-contents">
+        <div v-for="(content, index) in contents"
+          :key="index" class="service-text-contents-content">{{ item.contents }}</div>
+          <!-- <serviceItemContent :contents="test" />    -->
         </div>
         <div>
-          <serviceItemExcept :excepts="excepts" />   
+          <!-- <serviceItemExcept :excepts="excepts" />    -->
         </div>
         <div class="service-text-remark">{{ item.remark }}</div>
         <div class="service-text-bottom">
           <div class="service-text-bottom-oclock">
-            <div class="service-text-bottom-oclock-img" :src="require('@/assets/img/icon/advantage.png')"></div>
+            <img class="service-text-bottom-oclock-img" :src="require('@/assets/img/icon/advantage.png')">
             <div class="service-text-bottom-oclock-time">{{ item.time }}</div>
           </div>
           <div class="service-text-bottom-timeline">
@@ -53,15 +55,48 @@ export default {
     items: {
       type: Array
     },
+    contents: {
+      type: Array
+    },
   },
   data () {
     return {
       contents:[
         { content1:'沙發擦拭' , content2:'地毯除塵' , content3:'桌、櫃擦拭' , content4:'地板清潔' , content5:'燈具表面擦拭' , content6:'雜物整理' , content7:'垃圾打包' },
       ],
-      excepts:[
-        { except1:'沙發深層污漬' , except2:'地毯深層污漬' , except3:'天花板層板清潔' , except4:'吊燈清潔' },
-      ],
+      // items: [
+      //   { 
+      //     img: '',
+      //     item: [
+      //       { content: '沙發擦拭' },
+      //       { content: '地毯除塵' },
+      //       { content: '桌、櫃擦拭' },
+      //       { content: '地板清潔' },
+      //       { content: '燈具表面擦拭' },
+      //       { content: '雜物整理' },
+      //       { content: '垃圾打包' },
+      //     ],
+      //     warm: [
+      //       { content: '沙發深層污漬' },
+      //     ],
+      //     hours: [
+      //       { from: '0.1', to: '1' }
+      //     ]
+      //   }
+      // ],
+      
+      // test: [
+      //   { content: '沙發擦拭' },
+      //   { content: '地毯除塵' },
+      //   { content: '桌、櫃擦拭' },
+      //   { content: '地板清潔' },
+      //   { content: '燈具表面擦拭' },
+      //   { content: '雜物整理' },
+      //   { content: '垃圾打包' },
+      // ],
+      // excepts:[
+      //   { except1:'沙發深層污漬' , except2:'地毯深層污漬' , except3:'天花板層板清潔' , except4:'吊燈清潔' },
+      // ],
     }
   },
   computed: {
@@ -78,9 +113,12 @@ export default {
 <style lang="scss">
 
 .service {
+  max-width: 1440px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding: 0px 100px;
+  margin: 0 auto;
  
  &-boxs{
    margin: 3px;
@@ -151,11 +189,13 @@ export default {
     height: 60px;
 
      &-oclock{
-
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
        &-img{
          width: 30px;
          height: 30px;
-         border: 1px solid black;
          margin: 0 auto;
        }
        &-time{
@@ -204,8 +244,10 @@ export default {
  }
 }
 
-@media( max-width: 1023px ){
-
+@media( max-width: 500px ){
+  .service{
+    padding: 0px;
+  }
 }
 
 

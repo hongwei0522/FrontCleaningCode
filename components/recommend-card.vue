@@ -37,43 +37,26 @@ export default {
   data () {
     return {
       swiperOption: {
-        // scrollbar: true,
-        // mousewheel: true,
         slidesPerView: 4,
-        // slidesPerColumn: 2,
-        grid: { 
-          rows: 2, 
-        },
+        slidesPerColumn: 2,
+        slidesPerColumnFill:'row',
         spaceBetween: 4,
-        // pagination: {
-        //   el: ".swiper-pagination",
-        //   clickable: true,
-        // },
-        // observer:true,
-			  // observeParents:true,
-        // breakpoints: {
-        //   1023: {
-        //     slidesPerView: "4",
-        //     // centeredSlides: false,
-        //     spaceBetween: 4,
-        //      grid: {
-        //     rows: 2,
-        //   },
-        //     pagination: {
-        //     el: ".swiper-pagination",
-        //     clickable: true,
-        //   },
-        //   },
-          // 1022: {
-          //   slidesPerView: "auto",
-          //   spaceBetween: 4,
-          // },
-          // 320: {
-          //   slidesPerView: 1,
-          //   spaceBetween: 0,
-          // },
-        // },
-        
+        observer:true,
+			  observeParents:true,
+        breakpoints: {
+          1023: {
+            slidesPerView: 4,
+            slidesPerColumn: 2,
+            slidesPerColumnFill:'row',
+            spaceBetween: 4,
+          },
+          300: {
+            slidesPerView: 2,
+            slidesPerColumn: 1,
+            slidesPerColumnFill:'row',
+            spaceBetween: 4,
+          }
+        },
       }
     }
   },
@@ -95,6 +78,7 @@ export default {
  max-width: 700px;
 
  &-swiper{
+
    &-box{
      background: white;
      width: 140px;
@@ -102,6 +86,7 @@ export default {
      display: flex;
      flex-direction: column;
      justify-content: space-evenly;
+     margin-bottom: 12px;
    }
    &-img{
     border-radius: 30px;
@@ -156,8 +141,17 @@ export default {
  }
 }
 
-@media( max-width: 1023px ){
-
+@media( max-width: 500px ){
+  .card{
+    &-swiper{
+      &-box{
+        margin-top: 12px;
+      }
+    }
+  }
+  .swiper-slide {
+    flex-shrink: 1;
+  }
 }
 
 

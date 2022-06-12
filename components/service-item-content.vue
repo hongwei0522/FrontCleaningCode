@@ -2,14 +2,14 @@
   <div class="service">
     <div v-for="(content, index) in contents"
             :key="index" class="service-contents">
-        <div class="service-contents-content">{{ content.content1 }}</div>
-        <div class="service-contents-content">{{ content.content2 }}</div>
+        <div class="service-contents-content">{{ content.content }}</div>
+        <!-- <div class="service-contents-content">{{ content.content2 }}</div>
         <div class="service-contents-content">{{ content.content3 }}</div>
         <div class="service-contents-content">{{ content.content4 }}</div>
         <div class="service-contents-content">{{ content.content5 }}</div>
         <div class="service-contents-content">{{ content.content6 }}</div>
         <div class="service-contents-content">{{ content.content7 }}</div>
-        <div class="service-contents-content">{{ content.content8 }}</div>
+        <div class="service-contents-content">{{ content.content8 }}</div> -->
     </div>
   </div>
 </template>

@@ -1,27 +1,41 @@
 <template>
   <div class="index">
-    <topBar/>
+    <div class="index-topbar">
+      <topBar/>
+    </div>
     <div class="index-reserve">
-      <div class="index-reserve-title">預約居家清潔，三分鐘馬上搞定！</div>
+      <div class="index-reserve-titleBox">
+        <div class="index-reserve-titleBox-title">預約居家清潔，</div>
+        <div class="index-reserve-titleBox-title">三分鐘馬上搞定！</div>
+      </div>
       <div class="index-reserve-content">
         <div class="index-reserve-content-header">
-          <div class="index-reserve-content-header-text1">快速預約</div>
-          <div class="index-reserve-content-header-text2">雙人快清</div>
-          <div class="index-reserve-content-header-text2">指定人員</div>
-          <div class="index-reserve-content-header-text2">定期享優惠</div>
+          <!-- <div @click="selectItem = 1" :class="'index-reserve-content-header-text1'">快速預約</div>
+          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">雙人快清</div>
+          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">指定人員</div>
+          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">定期享優惠</div> -->
+          <div @click="toggle1()" :class="{'index-reserve-content-header-text1':isActive1, 'index-reserve-content-header-text2':isChange1}">
+            快速預約</div>
+              <div class="index-reserve-content-header-position" @click="toggle2()" :class="{'index-reserve-content-header-text2':isActive2, 'index-reserve-content-header-text1':isChange2}">
+                雙人快清
+                <div class="index-reserve-content-header-new">new</div>
+              </div>
+          <div @click="toggle3()" :class="{'index-reserve-content-header-text2':isActive3, 'index-reserve-content-header-text1':isChange3}">
+            指定人員</div>
+          <div @click="toggle4()" :class="{'index-reserve-content-header-text2':isActive4, 'index-reserve-content-header-text1':isChange4}">
+            定期享優惠</div>
+          
         </div>
         <div class="index-reserve-content-options">
-          <div>
             <selectLocation/>
-          </div>
-          <div>
             <selectTime/>
-          </div>
           <div class="index-reserve-content-options-select">
             <div class="index-reserve-content-options-pet"><img src="">家中有寵物?</div>
             <div class="index-reserve-content-options-whether">
-              <div @click="changeyes()" ref="noPet" class="index-reserve-content-options-whether-no">無</div>
-              <div @click="changeno()" ref="yesPet" class="index-reserve-content-options-whether-yes">有</div>
+              <div @click="isno = !isno , isyes = !isyes"
+              v-bind:class="{'index-reserve-content-options-whether-no': isno, 'index-reserve-content-options-whether-yes':isyes}">無</div>
+              <div @click="isno = !isno , isyes = !isyes" 
+              v-bind:class="{'index-reserve-content-options-whether-no': isyes, 'index-reserve-content-options-whether-yes':isno}">有</div>
             </div>
           </div>
           <div class="index-reserve-content-options-price">開始預約，查看清潔價格</div>
@@ -31,25 +45,29 @@
     </div>
     <div class="index-hours">
       <div class="index-hours-title1">鐘點清潔會掃哪裡?時數怎麼算?</div>
-      <div class="inedx-hours-title2">可以根據自己的需求查看會清潔的細項，並預估總共需要的時數，當天清潔人員會再討論狀況做些調整！</div>
+      <div class="index-hours-title2">可以根據自己的需求查看會清潔的細項，並預估總共需要的時數，當天清潔人員會再討論狀況做些調整！</div>
       <div><a><input type="button" value="時數計算教學" class="index-hours-calculation"></a></div>
     </div>
-    <serviceItem :items="items" />
+    <serviceItem :items="items"  />
     <div class="index-hours"><a><input type="button" value="開始預約>" class="index-appointment"></a></div>
     <div class="index-unserviced">
       <div class="index-unserviced-title1">其他未服務內容</div>
       <div class="index-unserviced-title2">基於人員與客戶安全、隱私等考量</div>
       <div class="index-unserviced-content">
-        <div class="index-unserviced-content-text">・移動或抬起超過10公斤的大型家具或重物</div>
-        <div class="index-unserviced-content-text">・天花板、高處窗戶及可觸及範圍外的表面清潔</div>
-        <div class="index-unserviced-content-text">・無危險性外窗清潔及窗簾、紗窗清洗</div>
-        <div class="index-unserviced-content-text">・寵物排泄及重度汙染區域清潔</div>
-        <div class="index-unserviced-content-text">・危險化學物質處理</div>
-        <div class="index-unserviced-content-text">・地毯深度清潔及清洗（基本除塵除外）</div>
-        <div class="index-unserviced-content-text">・各式陳年、染色汙點清潔</div>
-        <div class="index-unserviced-content-text">・除蟲害（例如：蜂窩、昆蟲…等）</div>
-        <div class="index-unserviced-content-text">・垃圾清運工作（不指使潔客將已包裝垃圾移至其他地方丟棄）</div>
-        <div class="index-unserviced-content-text">・室內惡臭環境 ・車庫清潔（基本掃除除外）園藝或院子清潔。</div>
+        <div class="index-unserviced-content-left">
+          <div class="index-unserviced-content-text">・移動或抬起超過10公斤的大型家具或重物</div>
+          <div class="index-unserviced-content-text">・天花板、高處窗戶及可觸及範圍外的表面清潔</div>
+          <div class="index-unserviced-content-text">・無危險性外窗清潔及窗簾、紗窗清洗</div>
+          <div class="index-unserviced-content-text">・寵物排泄及重度汙染區域清潔</div>
+          <div class="index-unserviced-content-text">・危險化學物質處理</div>
+        </div>
+        <div class="index-unserviced-content-right">
+          <div class="index-unserviced-content-text">・地毯深度清潔及清洗（基本除塵除外）</div>
+          <div class="index-unserviced-content-text">・各式陳年、染色汙點清潔</div>
+          <div class="index-unserviced-content-text">・除蟲害（例如：蜂窩、昆蟲…等）</div>
+          <div class="index-unserviced-content-text">・垃圾清運工作（不指使潔客將已包裝垃圾移至其他地方丟棄）</div>
+          <div class="index-unserviced-content-text">・室內惡臭環境 ・車庫清潔（基本掃除除外）園藝或院子清潔。</div>
+        </div>
       </div>
     </div>
     <div class="index-recommend">
@@ -57,6 +75,7 @@
         <div class="index-recommend-content-title1">全台唯一</div>
         <div class="index-recommend-content-title2">挑人員，評價直接看！</div>
         <div class="index-recommend-content-line"></div>
+        <div v-if="currentWidth < 500" class="index-recommend-content-recommendcard"><recommendCard :frames="frames" /></div>
         <div class="index-recommend-content-project">
           <div class="index-recommend-content-project-frame">
             <img class="index-recommend-content-project-frame-picture" :src="require('@/assets/img/icon/advantage.png')" alt="">
@@ -71,10 +90,11 @@
             <div class="index-recommend-content-project-frame-text">價錢、履歷、評價 透明公開</div>
           </div>
         </div>
+        <div v-if="currentWidth < 500" class="index-recommend-content-hours"><a><input type="button" value="開始預約>" class="index-appointment"></a></div>
       </div>
-      <div>
-        <recommendCard :frames="frames" />
-      </div>
+      
+        <recommendCard v-if="currentWidth > 500" :frames="frames" />
+      
     </div>
   </div>
 </template>
@@ -95,6 +115,19 @@ export default {
   },
   data () {
     return {
+      selectItem: 1,
+      selectItem: 2,
+      isActive1: true,
+      isActive2: true,
+      isActive3: true,
+      isActive4: true,
+      isChange1: false,
+      isChange2: false,
+      isChange3: false,
+      isChange4: false,
+      isyes: false,
+      isno: true,
+      currentWidth: null,
       frames: [
         { img: require('@/assets/img/article/photo1.png'), city: '台北市', name: '白佳*', score:'4', start: ' ★★★★', price: '$450/hr' },
         { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白**', score:'4', start: '★★★★★', price: '$450/hr' },
@@ -110,33 +143,94 @@ export default {
         { img: require('@/assets/img/index/bg-bedroom.jpg'), city: '新北市', name: '白**', score:'4', start: '★★★★★', price: '$450/hr' },
       ],
       items: [
-        { img: require('@/assets/img/article/photo1.png'), title: '客廳清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '客廳清潔', 
+          contents: [
+          { content: '沙發擦拭' },
+          { content: '沙發擦拭' },
+          { content: '沙發擦拭' },
+          ], 
+          remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', 
+          time: '0.5~1.5', 
+          ordinary: '普通清潔', 
+          serious: '空間大、許久未整理', 
+          start: '0.5hr', 
+          end: '1.5hr' },
         { img: require('@/assets/img/article/photo1.png'), title: '廚房清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' , remark2: '冰箱內部整理、清潔       + 1 ~1.5hr'},
         { img: require('@/assets/img/article/photo1.png'), title: '陽台清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
         { img: require('@/assets/img/article/photo1.png'), title: '浴室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
         { img: require('@/assets/img/article/photo1.png'), title: '臥室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
         { img: require('@/assets/img/article/photo1.png'), title: '其他清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
       ],
+      
     }
   },
   mounted () {
-  
+    this.currentWidth = screen.width;
   },
   computed: {
     
   },
   methods: {
-    changeyes () {
-      this.$refs.noPet.style.backgroundColor = "#36BBD9";
-      this.$refs.noPet.style.color = "#white";
-      this.$refs.yesPet.style.backgroundColor = "#FFFFFF";
-      this.$refs.yesPet.style.color = "#EEEEEE";
+    // changeyes () {
+    //   this.$refs.noPet.style.backgroundColor = "#36BBD9";
+    //   this.$refs.noPet.style.color = "#white";
+    //   this.$refs.yesPet.style.backgroundColor = "#FFFFFF";
+    //   this.$refs.yesPet.style.color = "#EEEEEE";
+    // },
+    // changeno () {
+    //   this.$refs.noPet.style.backgroundColor = "#FFFFFF";
+    //   this.$refs.noPet.style.color = "#EEEEEE";
+    //   this.$refs.yesPet.style.backgroundColor = "#36BBD9";
+    //   this.$refs.yesPet.style.color = "#white";
+    // },
+    toggle1() {
+      if(this.isChange1 == true){
+        this.isActive1 = true;
+        this.isActive2 = true;
+        this.isActive3 = true;
+        this.isActive4 = true;
+        this.isChange1 = false;
+        this.isChange2 = false;
+        this.isChange3 = false;
+        this.isChange4 = false;
+      }
     },
-    changeno () {
-      this.$refs.noPet.style.backgroundColor = "#FFFFFF";
-      this.$refs.noPet.style.color = "#EEEEEE";
-      this.$refs.yesPet.style.backgroundColor = "#36BBD9";
-      this.$refs.yesPet.style.color = "#white";
+    toggle2() {
+      if(this.isChange2 == false){
+        this.isActive1 = false;
+        this.isActive2 = false;
+        this.isActive3 = true;
+        this.isActive4 = true;
+        this.isChange1 = true;
+        this.isChange2 = true;
+        this.isChange3 = false;
+        this.isChange4 = false;
+      }
+    },
+    toggle3() {
+      if(this.isChange3 == false){
+        this.isActive1 = false;
+        this.isActive2 = true;
+        this.isActive3 = false;
+        this.isActive4 = true;
+        this.isChange1 = true;
+        this.isChange2 = false;
+        this.isChange3 = true;
+        this.isChange4 = false;
+      }
+    },
+    toggle4() {
+      if(this.isChange4 == false){
+        this.isActive1 = false;
+        this.isActive2 = true;
+        this.isActive3 = true;
+        this.isActive4 = false;
+        this.isChange1 = true;
+        this.isChange2 = false;
+        this.isChange3 = false;
+        this.isChange4 = true;
+      }
     },
   },
   watch: {
@@ -148,13 +242,17 @@ export default {
 <style lang="scss" scoped>
 
 .index {
-  max-width: 1440px;
   background: #F3F4F5;
   margin: 0 auto;
 
+  &-topbar{
+    background: white;
+    width: 100%;
+    position:fixed;
+    z-index: 1;
+  }
   &-reserve{
     padding-top: 55px;
-    max-width: 1440px;
     height: 600px;
     background-image: url('../assets/img/index/bg-bedroom.jpg');
     background-repeat: no-repeat;
@@ -167,14 +265,17 @@ export default {
     justify-content: space-evenly;
     align-items: center;
 
-    &-title{
-      font-family: 'Noto Sans TC';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 46px;
-      text-align: center;
-      color: #4A4A4A;
+    &-titleBox{
+      display: flex;
+      &-title{
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 46px;
+        text-align: center;
+        color: #4A4A4A;
+      }
     }
 
     &-content{
@@ -186,9 +287,8 @@ export default {
       &-header{
         display: flex;
         &-text1{
-          width: 112px;
-          font-family: 'Noto Sans TC';
-          font-style: normal;
+          width: 113px;
+          margin-left: 2px;
           font-weight: 500;
           font-size: 16px;
           line-height: 40px;
@@ -199,10 +299,8 @@ export default {
           cursor: pointer;
         }
         &-text2{
-          margin-left: 3px;
           width: 113px;
-          font-family: 'Noto Sans TC';
-          font-style: normal;
+          margin-left: 2px;
           font-weight: 500;
           font-size: 16px;
           line-height: 40px;
@@ -212,8 +310,23 @@ export default {
           border-radius: 5px 5px 0px 0px ;
           cursor: pointer;
         }
+        &-position{
+          position: relative;
+        }
+        &-new{
+          width: 30px;
+          background: red;
+          border-radius: 20px;
+          color: white;
+          font-size: 8px;
+          line-height: 12spx;
+          text-align: center;
+          position: absolute;
+          top: -15%;
+          left: 70%;
+        }
       }
-      &-options{
+      &-options {
         width: 460px;
         height: 320px;
         background: #FCFCFC;
@@ -235,6 +348,7 @@ export default {
           font-size: 15px;
           line-height: 22px;
         }
+        
         &-whether{
           display: flex;
           justify-content: center;
@@ -244,6 +358,7 @@ export default {
           border: #EEEEEE 1px solid;
           border-radius: 40px;
           cursor: pointer;
+
           &-no{
             width: 60px;
             font-family: 'Noto Sans TC';
@@ -316,7 +431,7 @@ export default {
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
-      line-height: 20px;
+      line-height: 24px;
       color: #3E4459;
     }
 
@@ -331,6 +446,7 @@ export default {
       color: #17C3E0;
       border-color: #17C3E0;
       border-radius: 5px;
+      margin-top: 16px;
       cursor: pointer;
     }
   }
@@ -393,10 +509,11 @@ export default {
   }
 
   &-recommend{
-    margin-top: 50px;
+    max-width: 1440px;
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 50px;
+    padding: 50px 0px;
+    margin: auto;
 
     &-content{
       &-title1{
@@ -449,4 +566,120 @@ export default {
   }
 }
 
+@media( max-width: 500px ){
+  .index{
+
+    &-reserve{
+      background-image: url('../assets/img/index/mobilebg.jpg');
+      &-titleBox{
+        width: 95%;
+        flex-direction: column;
+        &-title{
+          font-size: 36px;
+          line-height: 56px;
+          text-align: left;
+          color: #3E4459;
+        }
+      }
+
+      &-content{
+        &-header{
+          width: 390px;
+          &-text1{
+            font-size: 14px
+          }
+          &-text2{
+            font-size: 14px
+          }
+        }
+        &-options{
+          width: 390px;
+        }
+      }
+    }
+
+    &-hours{
+      padding: 0px 30px 30px 30px;
+      &-title1{
+        font-size: 18px;
+      }
+      &-title2{
+        font-size: 14px;
+      }
+     }
+
+    &-appointment{
+      margin-top: 30px;;
+    }
+
+    &-unserviced{
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &-title1{
+        font-size: 18px;
+        line-height: 26px;
+      }
+      &-title2{
+        font-size: 14px;
+        line-height: 20px;
+      }
+      &-content{
+        justify-content: start;
+        &-text{
+          width: 80%;
+          text-indent: -1em;
+        }
+      }
+    }
+
+    &-recommend{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-content{
+        &-title1{
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 26px;
+        }
+        &-title2{
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 26px;
+        }
+        &-line{
+          display: none;
+        }
+        &-recommendcard{
+          width: 350px;
+        }
+        &-project{
+          flex-direction: column;
+          align-items: flex-start;
+          &-frame{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            &-picture{
+              width: 30px;
+              height: 30px;
+            }
+            &-text{
+              margin-left: 10px;
+              width: auto;
+            }
+          }
+        }
+        &-hours{
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  
+}
 </style>

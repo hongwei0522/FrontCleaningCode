@@ -50,12 +50,6 @@ export default {
           value: 'double',
           label: '雙人打掃',
             children: [{
-                value: '3hours',
-                label: '3小時',
-            },{
-                value: '3.5hours',
-                label: '3.5小時',
-            },{
                 value: '4hours',
                 label: '4小時',
             },{

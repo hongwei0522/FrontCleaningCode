@@ -3,7 +3,10 @@
     <div><a class="header-link" href="https://www.jackercleaning.com/n" target="_blank">
       <img class="header-logo" src="@/assets/img/icon/logo.png" alt="logo">
     </a></div>
-    <div class="header-title">
+    <div v-if="currentWidth < 500" class="header-title">
+      <img class="header-topbarTitle" :src="require('@/assets/img/icon/topbarTitle.jpg')" alt="title">
+    </div>
+    <div v-else class="header-title">
       <div class="header-font1">找打掃</div>
       <div class="header-font1">企業清潔</div>
       <div class="header-font1">全部服務</div>
@@ -24,8 +27,11 @@ export default {
   },
   data () {
     return {
-
+      currentWidth: null,
     }
+  },
+  mounted () {
+    this.currentWidth = screen.width;
   },
   computed: {
 
@@ -41,14 +47,13 @@ export default {
 <style lang="scss">
 
 .header {
-  width: 1440px;
+  max-width: 1440px;
   height: 55px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position:fixed;
-  background: white;
-
+  margin: 0 auto;
+  
   &-logo {
     width: 200px;
   }
@@ -76,12 +81,19 @@ export default {
   &-font3{
     color: #17C3E0;
     border-radius: 20px;
-    border-color: #17C3E0;
+    border: 1px solid #17C3E0;
+  }
+  &-topbarTitle{
+    width: 30px;
+    height: 30px;
   }
 }
 
-@media( max-width: 1023px ){
-
+@media( max-width: 500px ){
+  .header{
+    justify-content: space-between;
+    margin: 0px 30px;
+  }
 }
 
 
