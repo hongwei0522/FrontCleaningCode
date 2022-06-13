@@ -98,8 +98,12 @@ export default {
 
 <style>
 
+.el-cascader{
+  width: 95%;
+}
+
 .el-input--suffix .el-input__inner {
-  width: 390px;
+  width: 100%;
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 400;
@@ -113,7 +117,7 @@ export default {
 }
 
 .el-cascader-panel {
-    width: 390px;
+    width: 100%;
 }
 
 .el-scrollbar__bar.is-vertical{

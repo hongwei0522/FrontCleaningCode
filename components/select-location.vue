@@ -93,7 +93,7 @@ export default {
 }
 
 .el-cascader-panel {
-    width: 390px;
+    width: 100%;
 }
 
 .el-scrollbar__bar.is-vertical{
