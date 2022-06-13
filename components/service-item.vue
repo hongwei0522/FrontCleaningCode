@@ -1,8 +1,7 @@
 <template>
   <div class="service">
     <div class="service">
-    <div v-for="(item, index) in items"
-          :key="index" class="service-boxs">
+    <div  class="service-boxs">
       <div class="service-box">
         <div class="service-box-img"
           :style="[
@@ -12,17 +11,35 @@
         <div class="service-box-title">{{ item.title }}</div>
       </div>
       <div class="service-text">
-        <div class="service-text-contents">
-        <div v-for="(content, index) in contents"
-          :key="index" class="service-text-contents-content">{{ item.contents }}</div>
-          <!-- <serviceItemContent :contents="test" />    -->
+        <div class="service-text-memo">{{ item.memo }}</div>
+        <div class="service-text-secondtitle">
+          <div class="service-text-secondtitle-name">{{ item.secondtitle }}</div>
+          <div class="service-text-secondtitle-time">{{ item.secondtime }}</div>
         </div>
-        <div>
-          <!-- <serviceItemExcept :excepts="excepts" />    -->
+        <div class="service-text-contents">
+          <div v-for="(content, index) in item.contents"
+            :key="index" class="service-text-contents-content">● {{ content.content }}</div>
+        </div>
+        <div class="service-text-excepts">
+          <div v-for="(except, index) in item.excepts"
+          :key="index" class="service-text-excepts-except"><p class="service-text-excepts-red">×</p> {{ except.except }}</div>
         </div>
         <div class="service-text-remark">{{ item.remark }}</div>
+        <div class="service-text-thirdtitle">
+          <div class="service-text-thirdtitle-name">{{ item.thirdtitle }}</div>
+          <div class="service-text-thirdtitle-time">{{ item.thirdtime }}</div>
+        </div>
+        <div class="service-text-secondcontents">
+          <div v-for="(content, index) in item.secondcontents"
+            :key="index" class="service-text-secondcontents-content">● {{ content.secondcontent }}</div>
+        </div>
+        <div class="service-text-secondexcepts">
+          <div v-for="(except, index) in item.secondexcepts"
+          :key="index" class="service-text-secondexcepts-except"><p class="service-text-secondexcepts-red">×</p> {{ except.secondexcept }}</div>
+        </div>
+        <div class="service-text-space">{{ item.space}}</div>
         <div class="service-text-bottom">
-          <div class="service-text-bottom-oclock">
+          <div v-if="isHide" class="service-text-bottom-oclock">
             <img class="service-text-bottom-oclock-img" :src="require('@/assets/img/icon/advantage.png')">
             <div class="service-text-bottom-oclock-time">{{ item.time }}</div>
           </div>
@@ -31,14 +48,18 @@
               <div class="service-text-bottom-timeline-clean-ordinary">{{ item.ordinary }}</div>
               <div class="service-text-bottom-timeline-clean-serious">{{ item.serious }}</div>
             </div>
-            <div class="service-text-bottom-timeline-border"></div>
+            <div v-if="isHide" class="service-text-bottom-timeline-border"></div>
             <div class="service-text-bottom-timeline-time">
               <div class="service-text-bottom-timeline-time-start">{{ item.start }}</div>
               <div class="service-text-bottom-timeline-time-end">{{ item.end }}</div>
             </div>
+            <div class="service-text-bottom-timeline-addition">
+              <div class="service-text-bottom-timeline-addition-name">{{ item.addition}}</div>
+              <div class="service-text-bottom-timeline-addition-time">{{ item.addtime}}</div>
+            </div>
+            <div class="service-text-bottom-timeline-remark2">{{ item.remark2 }}</div>
           </div>
         </div>
-        <div class="service-text-remark">{{ item.remark2 }}</div>
       </div>
     </div>
     </div>
@@ -48,61 +69,25 @@
 <script>
 export default {
   components: {
-    serviceItemContent: require('~/components/service-item-content.vue').default,
-    serviceItemExcept: require('~/components/service-item-except.vue').default,
+
   },
   props: {
-    items: {
-      type: Array
-    },
-    contents: {
+    item: {
       type: Array
     },
   },
   data () {
     return {
-      contents:[
-        { content1:'沙發擦拭' , content2:'地毯除塵' , content3:'桌、櫃擦拭' , content4:'地板清潔' , content5:'燈具表面擦拭' , content6:'雜物整理' , content7:'垃圾打包' },
-      ],
-      // items: [
-      //   { 
-      //     img: '',
-      //     item: [
-      //       { content: '沙發擦拭' },
-      //       { content: '地毯除塵' },
-      //       { content: '桌、櫃擦拭' },
-      //       { content: '地板清潔' },
-      //       { content: '燈具表面擦拭' },
-      //       { content: '雜物整理' },
-      //       { content: '垃圾打包' },
-      //     ],
-      //     warm: [
-      //       { content: '沙發深層污漬' },
-      //     ],
-      //     hours: [
-      //       { from: '0.1', to: '1' }
-      //     ]
-      //   }
-      // ],
-      
-      // test: [
-      //   { content: '沙發擦拭' },
-      //   { content: '地毯除塵' },
-      //   { content: '桌、櫃擦拭' },
-      //   { content: '地板清潔' },
-      //   { content: '燈具表面擦拭' },
-      //   { content: '雜物整理' },
-      //   { content: '垃圾打包' },
-      // ],
-      // excepts:[
-      //   { except1:'沙發深層污漬' , except2:'地毯深層污漬' , except3:'天花板層板清潔' , except4:'吊燈清潔' },
-      // ],
+      isHide : true,
     }
   },
   computed: {
-
+    
   },
   methods: {
+    if () {
+      this.isHide = false;
+    },
   },
   watch: {
     
@@ -117,7 +102,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0px 100px;
   margin: 0 auto;
  
  &-boxs{
@@ -127,6 +111,7 @@ export default {
  &-box{
    width: 340px;
    background: #FFFFFF;
+   border-radius: 10px 10px 0px 0px;
 
    &-img{
     width: 340px;
@@ -145,6 +130,7 @@ export default {
     font-size: 18px;
     line-height: 36px;
     color: #4A4A4A;
+    margin-left: 20px;
    }
  }
 
@@ -153,40 +139,158 @@ export default {
    display: flex;
    flex-direction: column;
    justify-content: center;
-   align-items: center;
+   align-items: flex-start;
    background: #FFFFFF;
+   border-radius: 0px 0px 10px 10px;
+
+   &-memo{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #9B9B9B;
+    margin-left: 20px;
+   }
+
+   &-secondtitle{
+    width: 310px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    text-align: right;
+    color: #3E4459;
+    margin: 0px 0px 10px 15px;
+    &-name{
+      font-size: 18px;
+      line-height: 20px;
+    }
+    &-time{
+      font-size: 14px;
+      line-height: 14px;
+    }
+   }
+
+   &-contents{
+    width: 340px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    &-content{
+      width: 150px;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4A4A4A;
+      margin-left: 20px;
+    }
+   }
 
    &-excepts{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    &-except{
+      width: 150px;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4A4A4A;
+      margin-left: 20px;
+      display: flex;
+    }
+    &-red{
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+      padding-right: 2px;
+    }
    }
-   &-except{
-    width: 150px;
-    font-family: 'Noto Sans TC';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    color: #4A4A4A;
-   }
-
+   
    &-remark{
-     width: 290px;
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
     color: #9B9B9B;
+    margin: 0px 35px;
+   }
+
+   &-thirdtitle{
+    width: 310px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    text-align: right;
+    color: #3E4459;
+    margin: 0px 0px 10px 15px;
+    &-name{
+      font-size: 18px;
+      line-height: 20px;
+    }
+    &-time{
+      font-size: 14px;
+      line-height: 14px;
+    }
+   }
+
+   &-secondcontents{
+    width: 340px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    &-content{
+      width: 150px;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4A4A4A;
+      margin-left: 20px;
+    }
+   }
+
+   &-secondexcepts{
+    display: flex;
+    flex-wrap: wrap;
+    &-except{
+      width: 150px;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4A4A4A;
+      margin-left: 20px;
+      display: flex;
+    }
+    &-red{
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+      padding-right: 2px;
+    }
+   }
+
+   &-space{
+     color: white;
+     line-height: 20px;
    }
 
    &-bottom{
     width: 340px;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: 60px;
+    align-items: flex-start;
+    // height: 60px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
 
      &-oclock{
        display: flex;
@@ -238,6 +342,27 @@ export default {
         line-height: 14px;
         text-align: right;
         color: #3E4459;
+       }
+
+       &-addition{
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: right;
+        color: #3E4459;
+       }
+
+       &-remark2{
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: #9B9B9B;
        }
      }
    }

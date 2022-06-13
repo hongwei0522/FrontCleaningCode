@@ -10,21 +10,12 @@
       </div>
       <div class="index-reserve-content">
         <div class="index-reserve-content-header">
-          <!-- <div @click="selectItem = 1" :class="'index-reserve-content-header-text1'">快速預約</div>
-          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">雙人快清</div>
-          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">指定人員</div>
-          <div @click="selectItem = 2" :class="'index-reserve-content-header-text2'">定期享優惠</div> -->
-          <div @click="toggle1()" :class="{'index-reserve-content-header-text1':isActive1, 'index-reserve-content-header-text2':isChange1}">
-            快速預約</div>
-              <div class="index-reserve-content-header-position" @click="toggle2()" :class="{'index-reserve-content-header-text2':isActive2, 'index-reserve-content-header-text1':isChange2}">
-                雙人快清
-                <div class="index-reserve-content-header-new">new</div>
-              </div>
-          <div @click="toggle3()" :class="{'index-reserve-content-header-text2':isActive3, 'index-reserve-content-header-text1':isChange3}">
-            指定人員</div>
-          <div @click="toggle4()" :class="{'index-reserve-content-header-text2':isActive4, 'index-reserve-content-header-text1':isChange4}">
-            定期享優惠</div>
-          
+          <div @click="selectItem = 1" :class="['index-reserve-content-header-text',  { 'index-reserve-content-header-text2':selectItem == 1}]">快速預約</div>
+          <div class="index-reserve-content-header-position"  @click="selectItem = 2" :class="['index-reserve-content-header-text',  { 'index-reserve-content-header-text2':selectItem == 2}]">雙人快清
+          <div class="index-reserve-content-header-new">new</div>
+          </div>
+          <div @click="selectItem = 3" :class="['index-reserve-content-header-text',  { 'index-reserve-content-header-text2':selectItem == 3}]">指定人員</div>
+          <div @click="selectItem = 4" :class="['index-reserve-content-header-text',  { 'index-reserve-content-header-text2':selectItem == 4}]">定期享優惠</div>
         </div>
         <div class="index-reserve-content-options">
             <selectLocation/>
@@ -46,28 +37,42 @@
     <div class="index-hours">
       <div class="index-hours-title1">鐘點清潔會掃哪裡?時數怎麼算?</div>
       <div class="index-hours-title2">可以根據自己的需求查看會清潔的細項，並預估總共需要的時數，當天清潔人員會再討論狀況做些調整！</div>
-      <div><a><input type="button" value="時數計算教學" class="index-hours-calculation"></a></div>
+      <div class="index-hours-calculation">時數計算教學</div>
     </div>
-    <serviceItem :items="items"  />
-    <div class="index-hours"><a><input type="button" value="開始預約>" class="index-appointment"></a></div>
+    <div class="index-service">
+      <div>
+        <serviceItem :item="items[0]" />
+        <serviceItem :item="items[1]" />
+      </div>
+      <div>
+        <serviceItem :item="items[2]" />
+        <serviceItem :item="items[3]" />
+      </div>
+      <div>
+        <serviceItem :item="items[4]" />
+        <serviceItem :item="items[5]" />
+      </div>
+    </div>
+    
+    <div class="index-hours"><div class="index-appointment">開始預約</div></div>
     <div class="index-unserviced">
       <div class="index-unserviced-title1">其他未服務內容</div>
       <div class="index-unserviced-title2">基於人員與客戶安全、隱私等考量</div>
       <div class="index-unserviced-content">
-        <div class="index-unserviced-content-left">
+        <!-- <div class="index-unserviced-content-left"> -->
           <div class="index-unserviced-content-text">・移動或抬起超過10公斤的大型家具或重物</div>
           <div class="index-unserviced-content-text">・天花板、高處窗戶及可觸及範圍外的表面清潔</div>
           <div class="index-unserviced-content-text">・無危險性外窗清潔及窗簾、紗窗清洗</div>
           <div class="index-unserviced-content-text">・寵物排泄及重度汙染區域清潔</div>
           <div class="index-unserviced-content-text">・危險化學物質處理</div>
-        </div>
-        <div class="index-unserviced-content-right">
+        <!-- </div> -->
+        <!-- <div class="index-unserviced-content-right"> -->
           <div class="index-unserviced-content-text">・地毯深度清潔及清洗（基本除塵除外）</div>
           <div class="index-unserviced-content-text">・各式陳年、染色汙點清潔</div>
           <div class="index-unserviced-content-text">・除蟲害（例如：蜂窩、昆蟲…等）</div>
           <div class="index-unserviced-content-text">・垃圾清運工作（不指使潔客將已包裝垃圾移至其他地方丟棄）</div>
           <div class="index-unserviced-content-text">・室內惡臭環境 ・車庫清潔（基本掃除除外）園藝或院子清潔。</div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
     <div class="index-recommend">
@@ -90,7 +95,7 @@
             <div class="index-recommend-content-project-frame-text">價錢、履歷、評價 透明公開</div>
           </div>
         </div>
-        <div v-if="currentWidth < 500" class="index-recommend-content-hours"><a><input type="button" value="開始預約>" class="index-appointment"></a></div>
+        <div v-if="currentWidth < 500" class="index-recommend-content-hours"><div class="index-appointment">開始預約</div></div>
       </div>
       
         <recommendCard v-if="currentWidth > 500" :frames="frames" />
@@ -116,15 +121,6 @@ export default {
   data () {
     return {
       selectItem: 1,
-      selectItem: 2,
-      isActive1: true,
-      isActive2: true,
-      isActive3: true,
-      isActive4: true,
-      isChange1: false,
-      isChange2: false,
-      isChange3: false,
-      isChange4: false,
       isyes: false,
       isno: true,
       currentWidth: null,
@@ -146,21 +142,151 @@ export default {
         { img: require('@/assets/img/article/photo1.png'), 
           title: '客廳清潔', 
           contents: [
-          { content: '沙發擦拭' },
-          { content: '沙發擦拭' },
-          { content: '沙發擦拭' },
+            { content: '沙發擦拭' },
+            { content: '地毯除塵' },
+            { content: '桌、櫃擦拭' },
+            { content: '地板清潔' },
+            { content: '燈具表面擦拭' },
+            { content: '雜物整理' },
+            { content: '垃圾打包' },
           ], 
+          excepts: [
+            { except: '沙發深層污漬' },
+            { except: '地毯深層污漬' },
+            { except: '天花板層板清潔' },
+            { except: '吊燈清潔' },
+          ],
           remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', 
-          time: '0.5~1.5', 
+          time: '0.5~1.5/間', 
           ordinary: '普通清潔', 
           serious: '空間大、許久未整理', 
           start: '0.5hr', 
-          end: '1.5hr' },
-        { img: require('@/assets/img/article/photo1.png'), title: '廚房清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' , remark2: '冰箱內部整理、清潔       + 1 ~1.5hr'},
-        { img: require('@/assets/img/article/photo1.png'), title: '陽台清潔', remark:'', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
-        { img: require('@/assets/img/article/photo1.png'), title: '浴室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
-        { img: require('@/assets/img/article/photo1.png'), title: '臥室清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
-        { img: require('@/assets/img/article/photo1.png'), title: '其他清潔', remark:'建議您與潔客可採用安全之方式拆下後，交由潔客做清洗。', time: '0.5~1.5', ordinary: '普通清潔', serious: '空間大、許久未整理', start: '0.5hr', end: '1.5hr' },
+          end: '1.5hr' 
+          },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '浴室清潔',
+          contents: [
+            { content: '馬桶刷洗' },
+            { content: '鏡面光亮' },
+            { content: '浴缸清潔' },
+            { content: '磁磚刷洗' },
+            { content: '洗手檯面清潔' },
+            { content: '浴門清潔' },
+            { content: '垃圾打包' },
+            { content: '清理水垢、皂垢' },
+            { content: '局部小範圍除霉' },
+          ], 
+          excepts: [],
+          remark:'', 
+          time: '1~1.5/間', 
+          ordinary: '普通清潔', 
+          serious: '許久未清潔', 
+          start: '1hr', 
+          end: '1.5hr' ,
+          addition: '+ 全區除霉',
+          addtime: '+ 4hr',
+          remark2: '因需用漂白水敷於發霉處3~4小時，因此全區除霉將耗時至少4~8小時(若霉菌已深入內部，有可能無法完全清除乾淨)',
+          },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '廚房清潔', 
+          contents: [
+            { content: '牆面擦拭' },
+            { content: '流理檯擦拭' },
+            { content: '瓦斯爐台' },
+            { content: '集油槽油污處理' },
+            { content: '抽油煙機' },
+            { content: '櫥櫃擦拭' },
+            { content: '地板清潔' },
+            { content: '冰箱外觀' },
+            { content: '洗碗、水槽清潔' },
+          ], 
+          excepts: [
+            { except: '廚餘清理' },
+          ],
+          remark:'', 
+          space:'_',
+          time: '1~2.5/間', 
+          ordinary: '普通清潔', 
+          serious: '油污嚴重、許久未清潔', 
+          start: '1hr', 
+          end: '2.5hr',
+          addition: '+ 冰箱內部整理、清潔',
+          addtime: '+ 1 ~1.5hr',
+          },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '臥室清潔', 
+          contents: [
+            { content: '衣櫃外觀擦拭' },
+            { content: '桌面清潔' },
+            { content: '棉被、衣物整理' },
+            { content: '家電外觀擦拭' },
+            { content: '地板清潔' },
+            { content: '雜物整理' },
+            { content: '床單換洗' },
+            { content: '垃圾打包' },
+          ], 
+          excepts: [
+            { except: '家電拆卸清洗' },
+            { except: '整理衣櫃內部衣物' },
+            { except: '移動、搬移床鋪' },
+          ],
+          space:'_',
+          remark:'', 
+          time: '0.5~1.5/間', 
+          ordinary: '普通清潔', 
+          serious: '空間大、許久未整理', 
+          start: '0.5hr', 
+          end: '1.5hr' 
+          },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '陽台清潔', 
+          contents: [
+            { content: '家電外觀擦拭' },
+            { content: '水管擦拭' },
+            { content: '地板刷洗' },
+            { content: '曬衣桿擦拭' },
+            { content: '雜物整理' },
+          ], 
+          excepts: [
+            { except: '除蟲害' },
+            { except: '園藝、花草照料' },
+          ],
+          remark:'', 
+          time: '1~1.5/間', 
+          ordinary: '普通清潔', 
+          serious: '空間大、許久未整理', 
+          start: '1hr', 
+          end: '1.5hr' 
+          },
+        { img: require('@/assets/img/article/photo1.png'), 
+          title: '其他清潔',
+          memo: '非主要清潔內容，但可增加時數請清潔人員執行',
+          secondtitle:'✚窗戶清潔',
+          secondtime:'+ 0.5hr/扇',
+          contents: [
+            { content: '內側、底溝擦拭' },
+            { content: '玻璃窗內部清洗' },
+            { content: '紗窗內部清潔' },
+          ], 
+          excepts: [
+            { except: '拆卸窗戶清洗' },
+            { except: '拆窗簾、清洗' },
+          ],
+          remark:'以安全為前提下，『兩位』服務人員以上才提供拆洗窗戶、紗窗的服務，或者您可以自行拆下，再由服務人員做清洗',
+          thirdtitle:'✚衣物洗曬',
+          thirdtime:'+ 1~2hr',
+          secondcontents: [
+            { secondcontent: '衣物清洗' },
+            { secondcontent: '衣物晾曬' },
+            { secondcontent: '需備有洗衣機' },
+          ], 
+          secondexcepts: [
+            { secondexcept: '特殊清洗衣物(乾洗)' },
+            { secondexcept: '手洗衣物' },
+            { secondexcept: '整燙衣物' },
+          ],  
+          },
+          
       ],
       
     }
@@ -172,66 +298,7 @@ export default {
     
   },
   methods: {
-    // changeyes () {
-    //   this.$refs.noPet.style.backgroundColor = "#36BBD9";
-    //   this.$refs.noPet.style.color = "#white";
-    //   this.$refs.yesPet.style.backgroundColor = "#FFFFFF";
-    //   this.$refs.yesPet.style.color = "#EEEEEE";
-    // },
-    // changeno () {
-    //   this.$refs.noPet.style.backgroundColor = "#FFFFFF";
-    //   this.$refs.noPet.style.color = "#EEEEEE";
-    //   this.$refs.yesPet.style.backgroundColor = "#36BBD9";
-    //   this.$refs.yesPet.style.color = "#white";
-    // },
-    toggle1() {
-      if(this.isChange1 == true){
-        this.isActive1 = true;
-        this.isActive2 = true;
-        this.isActive3 = true;
-        this.isActive4 = true;
-        this.isChange1 = false;
-        this.isChange2 = false;
-        this.isChange3 = false;
-        this.isChange4 = false;
-      }
-    },
-    toggle2() {
-      if(this.isChange2 == false){
-        this.isActive1 = false;
-        this.isActive2 = false;
-        this.isActive3 = true;
-        this.isActive4 = true;
-        this.isChange1 = true;
-        this.isChange2 = true;
-        this.isChange3 = false;
-        this.isChange4 = false;
-      }
-    },
-    toggle3() {
-      if(this.isChange3 == false){
-        this.isActive1 = false;
-        this.isActive2 = true;
-        this.isActive3 = false;
-        this.isActive4 = true;
-        this.isChange1 = true;
-        this.isChange2 = false;
-        this.isChange3 = true;
-        this.isChange4 = false;
-      }
-    },
-    toggle4() {
-      if(this.isChange4 == false){
-        this.isActive1 = false;
-        this.isActive2 = true;
-        this.isActive3 = true;
-        this.isActive4 = false;
-        this.isChange1 = true;
-        this.isChange2 = false;
-        this.isChange3 = false;
-        this.isChange4 = true;
-      }
-    },
+
   },
   watch: {
     
@@ -286,29 +353,23 @@ export default {
 
       &-header{
         display: flex;
-        &-text1{
+
+        &-text{
           width: 113px;
           margin-left: 2px;
           font-weight: 500;
           font-size: 16px;
+          color: #9B9B9B;
+          background: #F5F4F4;
           line-height: 40px;
           text-align: center;
-          color: #36BBD9;
-          background: #FFFFFF;
           border-radius: 5px 5px 0px 0px ;
           cursor: pointer;
         }
         &-text2{
-          width: 113px;
-          margin-left: 2px;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 40px;
-          text-align: center;
-          color: #9B9B9B;
-          background: #F5F4F4;
-          border-radius: 5px 5px 0px 0px ;
-          cursor: pointer;
+          
+          color: #36BBD9;
+          background: #FFFFFF;
         }
         &-position{
           position: relative;
@@ -416,6 +477,9 @@ export default {
   &-hours{
     text-align: center;
     padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &-title1{
       font-family: 'Noto Sans TC';
@@ -444,11 +508,17 @@ export default {
       font-size: 14px;
       text-align: center;
       color: #17C3E0;
-      border-color: #17C3E0;
+      border: 1px solid #17C3E0;
       border-radius: 5px;
       margin-top: 16px;
       cursor: pointer;
     }
+  }
+
+  &-service{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &-appointment{
@@ -496,14 +566,14 @@ export default {
       align-items: center;
       
       &-text{
-        width: 450px;
+        width: 35%;
         font-family: 'Noto Sans TC';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
         color: #3E4459;
-        padding: 0px 50px;
+        // padding: 0px 50px;
       }
     }
   }
@@ -583,18 +653,28 @@ export default {
       }
 
       &-content{
+        width: 100%;
         &-header{
-          width: 390px;
-          &-text1{
+          width: 95%;
+          &-text{
+            width: 25%;
             font-size: 14px
           }
           &-text2{
+            width: 25%;
             font-size: 14px
           }
         }
         &-options{
-          width: 390px;
+          width: 95%;
+          &-select{
+            width: 95%;
+          }
+          &-price{
+            width:95%;
+          }
         }
+        
       }
     }
 
@@ -607,6 +687,10 @@ export default {
         font-size: 14px;
       }
      }
+
+    &-service{
+      flex-direction: column;
+    }
 
     &-appointment{
       margin-top: 30px;;
@@ -626,7 +710,7 @@ export default {
         line-height: 20px;
       }
       &-content{
-        justify-content: start;
+        justify-content: center;
         &-text{
           width: 80%;
           text-indent: -1em;
@@ -679,7 +763,6 @@ export default {
         }
       }
     }
-  }
-  
+  }  
 }
 </style>

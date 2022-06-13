@@ -74,9 +74,12 @@ export default {
 </style>
 
 <style>
+.el-cascader{
+  width: 95%;
+}
 
 .el-input--suffix .el-input__inner {
-  width: 390px;
+  width: 100%;
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 400;

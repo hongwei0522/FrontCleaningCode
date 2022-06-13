@@ -1,5 +1,5 @@
 <template>
-  <div class="card swiper-contain">
+  <div class="card">
     <swiper class="swiper card-swiper" :options="swiperOption" ref="mySwiper">
         <swiper-slide class="card-swiper-slide"
           v-for="(frame, index) in frames"
@@ -47,16 +47,22 @@ export default {
           1023: {
             slidesPerView: 4,
             slidesPerColumn: 2,
-            slidesPerColumnFill:'row',
             spaceBetween: 4,
           },
           300: {
             slidesPerView: 2,
+            slidesPerColumnFill: 'column',
             slidesPerColumn: 1,
-            slidesPerColumnFill:'row',
             spaceBetween: 4,
           }
         },
+        on: {
+          resize: () => {
+            setTimeout(()=> {
+              this.$router.push('/blank')
+            }, 500)
+          },
+        }
       }
     }
   },
@@ -78,6 +84,7 @@ export default {
  max-width: 700px;
 
  &-swiper{
+
 
    &-box{
      background: white;
@@ -143,7 +150,16 @@ export default {
 
 @media( max-width: 500px ){
   .card{
+    width: 100%;
+
     &-swiper{
+      max-width: 280px;
+      width: 100%;
+
+      &-slide {
+        width: 140px;
+      }
+
       &-box{
         margin-top: 12px;
       }
