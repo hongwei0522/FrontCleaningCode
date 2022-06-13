@@ -69,6 +69,7 @@ export default {
     font-size: 12px;
     border-radius: 20px;
     line-height: 24px;
+    border-radius: 30px;
     padding: 0px 10px;
     cursor: pointer;
   }

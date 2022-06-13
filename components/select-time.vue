@@ -104,8 +104,6 @@ export default {
 
 .el-input--suffix .el-input__inner {
   width: 100%;
-  font-family: 'Noto Sans TC';
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;

@@ -8,9 +8,13 @@
             {'backgroundImage': 'url(' + item.img + ')'}
           ]"
         ></div>
-        <div class="service-box-title">{{ item.title }}</div>
+        <div  @click="isHide = !isHide" class="service-box-titlebox">
+          <div class="service-box-title">{{ item.title }}</div>
+          <div v-if="currentWidth < 500" class="">⌵</div>
+        </div>
       </div>
-      <div class="service-text">
+      <div v-if="isHide" class="service-text">
+      <!-- <div v-if="currentWidth > 500" class="service-text"> -->
         <div class="service-text-memo">{{ item.memo }}</div>
         <div class="service-text-secondtitle">
           <div class="service-text-secondtitle-name">{{ item.secondtitle }}</div>
@@ -39,16 +43,16 @@
         </div>
         <div class="service-text-space">{{ item.space}}</div>
         <div class="service-text-bottom">
-          <div v-if="isHide" class="service-text-bottom-oclock">
+          <div v-if="item.time" class="service-text-bottom-oclock">
             <img class="service-text-bottom-oclock-img" :src="require('@/assets/img/icon/advantage.png')">
             <div class="service-text-bottom-oclock-time">{{ item.time }}</div>
           </div>
-          <div class="service-text-bottom-timeline">
+          <div v-if="item.ordinary" class="service-text-bottom-timeline">
             <div class="service-text-bottom-timeline-clean">
               <div class="service-text-bottom-timeline-clean-ordinary">{{ item.ordinary }}</div>
               <div class="service-text-bottom-timeline-clean-serious">{{ item.serious }}</div>
             </div>
-            <div v-if="isHide" class="service-text-bottom-timeline-border"></div>
+            <div class="service-text-bottom-timeline-border"></div>
             <div class="service-text-bottom-timeline-time">
               <div class="service-text-bottom-timeline-time-start">{{ item.start }}</div>
               <div class="service-text-bottom-timeline-time-end">{{ item.end }}</div>
@@ -78,16 +82,21 @@ export default {
   },
   data () {
     return {
-      isHide : true,
+      currentWidth: null,
+      isHide: true,
     }
   },
+  mounted () {
+    this.currentWidth = screen.width;
+    if ( this.currentWidth < 500 ) {
+      this.isHide = false;
+    };
+  },
   computed: {
-    
+   
   },
   methods: {
-    if () {
-      this.isHide = false;
-    },
+    
   },
   watch: {
     
@@ -110,8 +119,13 @@ export default {
 
  &-box{
    width: 340px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    background: #FFFFFF;
    border-radius: 10px 10px 0px 0px;
+   margin-top: 10px;
+
 
    &-img{
     width: 340px;
@@ -120,17 +134,23 @@ export default {
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
-    margin: 0 auto;
     border-radius: 10px 10px 0px 0px;
    }
-   &-title{
-    font-family: 'Noto Sans TC';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 36px;
-    color: #4A4A4A;
-    margin-left: 20px;
+   &-titlebox{
+     width: 90%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     &-title{
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 36px;
+      color: #4A4A4A;
+      margin-left: 20px;
+     }
+    
    }
  }
 
@@ -148,7 +168,7 @@ export default {
     font-size: 12px;
     line-height: 14px;
     color: #9B9B9B;
-    margin-left: 20px;
+    margin: 0px 0px 20px 20px;
    }
 
    &-secondtitle{
@@ -162,7 +182,7 @@ export default {
     margin: 0px 0px 10px 15px;
     &-name{
       font-size: 18px;
-      line-height: 20px;
+      line-height: 30px;
     }
     &-time{
       font-size: 14px;
@@ -216,7 +236,7 @@ export default {
     font-size: 12px;
     line-height: 14px;
     color: #9B9B9B;
-    margin: 0px 35px;
+    margin: 0px 35px 20px 35px;
    }
 
    &-thirdtitle{
@@ -230,7 +250,7 @@ export default {
     margin: 0px 0px 10px 15px;
     &-name{
       font-size: 18px;
-      line-height: 20px;
+      line-height: 30px;
     }
     &-time{
       font-size: 14px;

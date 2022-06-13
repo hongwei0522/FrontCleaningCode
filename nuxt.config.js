@@ -16,7 +16,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'og:title'  , property: 'og:title'  , content: '潔客幫-居家清潔、鐘點清潔'},
-      { hid: 'og:image' , property: 'og:image' , content: 'smallLogo.png'},
+      { hid: 'og:image' , property: 'og:image' , content: 'logo.png'},
       { hid: 'og:type' , property: 'og:type' , content: 'website'},
       // { hid: 'og:url' , property: 'og:url' , content: ''},
       { hid: 'description', name: 'description', content: '家，是每個人成長的地方，構成了無數與家人間歡笑、溫暖的回憶。 大家的生活越來越忙碌，不僅工作要忙、家中也有大大小小瑣碎的事情， 漸漸地家裡環境越來越髒亂，早就忘了家裡煥然一新的感覺， 在這樣的背景下，潔客幫應運而生，讓每個人享受一個更好的家。' },

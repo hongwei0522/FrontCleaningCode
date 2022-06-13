@@ -85,24 +85,23 @@ export default {
 
  &-swiper{
 
-
    &-box{
-     background: white;
      width: 140px;
      height: 190px;
      display: flex;
      flex-direction: column;
      justify-content: space-evenly;
+     background: white;
      margin-bottom: 12px;
    }
    &-img{
-    border-radius: 30px;
     width: 60px;
     height: 60px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
+    border-radius: 30px;
     margin: 0 auto;
    }
    &-city{
