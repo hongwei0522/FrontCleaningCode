@@ -125,18 +125,18 @@ export default {
       isno: true,
       currentWidth: null,
       frames: [
-        { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白佳*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo2.png'), city: '台北市', name: '連建*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo3.png'), city: '桃園市', name: '陳孟*', score:'5', start: '★★★★★', price: '$400/hr' },
-        { img: require('@/assets/img/article/photo4.png'), city: '新北市', name: '陳海*', score:'5', start: '★★★★★', price: '$400/hr' },
-        { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白佳*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo2.png'), city: '台北市', name: '連建*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo3.png'), city: '桃園市', name: '陳孟*', score:'5', start: '★★★★★', price: '$400/hr' },
-        { img: require('@/assets/img/article/photo4.png'), city: '新北市', name: '陳海*', score:'5', start: '★★★★★', price: '$400/hr' },
-        { img: require('@/assets/img/article/photo1.png'), city: '新北市', name: '白佳*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo2.png'), city: '台北市', name: '連建*', score:'5', start: '★★★★★', price: '$450/hr' },
-        { img: require('@/assets/img/article/photo3.png'), city: '桃園市', name: '陳孟*', score:'5', start: '★★★★★', price: '$400/hr' },
-        { img: require('@/assets/img/article/photo4.png'), city: '新北市', name: '陳海*', score:'5', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo1.jpg'), city: '新北市', name: '白佳*', score:'4.7', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo2.jpg'), city: '台北市', name: '連建*', score:'4.9', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo3.jpg'), city: '桃園市', name: '陳孟*', score:'5', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo4.jpg'), city: '新北市', name: '陳海*', score:'4.8', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo1.jpg'), city: '新北市', name: '白佳*', score:'5', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo2.jpg'), city: '台北市', name: '連建*', score:'4.6', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo3.jpg'), city: '桃園市', name: '陳孟*', score:'4.8', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo4.jpg'), city: '新北市', name: '陳海*', score:'5', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo1.jpg'), city: '新北市', name: '白佳*', score:'4.7', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo2.jpg'), city: '台北市', name: '連建*', score:'5', start: '★★★★★', price: '$450/hr' },
+        { img: require('@/assets/img/article/photo3.jpg'), city: '桃園市', name: '陳孟*', score:'5', start: '★★★★★', price: '$400/hr' },
+        { img: require('@/assets/img/article/photo4.jpg'), city: '新北市', name: '陳海*', score:'4', start: '★★★★', price: '$400/hr' },
       ],
       items: [
         { img: require('@/assets/img/article/item1.jpg'), 
@@ -514,6 +514,9 @@ export default {
           text-align: center;
           border-radius: 5px;
           cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
         }
         &-people{
           font-family: 'Noto Sans TC';
@@ -569,6 +572,9 @@ export default {
       border-radius: 5px;
       margin-top: 16px;
       cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -592,6 +598,9 @@ export default {
     border-color: #36BBD9;
     border-radius: 5px;
     cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &-unserviced{
