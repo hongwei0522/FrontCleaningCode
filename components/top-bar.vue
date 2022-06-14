@@ -1,8 +1,6 @@
 <template>
   <div class="header">
-    <div><a class="header-link" href="https://www.jackercleaning.com/n" target="_blank">
-      <img class="header-logo" src="@/assets/img/icon/logo.png" alt="logo">
-    </a></div>
+      <img @click="goToPage" class="header-logo" src="@/assets/img/icon/logo.png" alt="logo">
     <div v-if="currentWidth < 500" class="header-title">
       <img class="header-topbarTitle" :src="require('@/assets/img/icon/topbarTitle.jpg')" alt="title">
     </div>
@@ -37,6 +35,9 @@ export default {
 
   },
   methods: {
+    goToPage() {
+      location.href = 'https://hongwei0522.github.io/gh-pages/'
+    }
   },
   watch: {
     
@@ -55,7 +56,7 @@ export default {
   margin: 0 auto;
   
   &-logo {
-    width: 200px;
+    width: 150px;
   }
 
   &-title {
