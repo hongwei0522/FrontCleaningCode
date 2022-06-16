@@ -57,6 +57,7 @@ export default {
   
   &-logo {
     width: 150px;
+    cursor: pointer;
   }
 
   &-title {
